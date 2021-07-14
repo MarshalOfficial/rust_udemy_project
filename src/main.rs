@@ -1,48 +1,79 @@
 use std::mem;
 
+fn operators() {
+    let mut a = 2 + 3 * 4;
+    println!("{}", a);
+    a = a + 1;
+    a -= 2;
+    println!("{}", a);
+
+    let a_cubed = i32::pow(a, 3);
+    println!("{}", a_cubed);
+
+    let b = 2.5;
+    let b_cubed = f64::powi(b, 3);
+    println!("{}", b_cubed);
+    let b_to_pi = f64::powf(b, std::f64::consts::PI);
+    println!("{}", b_to_pi);
+
+    //bitwise
+    let c = 1 | 2; // | or    & and     ^ XOR    ! NOR
+    println!("1|2 = {}",c);
+    let two_to_10 = 1 << 10;
+    println!("2^8 = {}",two_to_10);
+    
+    //logical
+    let ss = std::f64::consts::PI < 4.0; //true // > <= == >=
+    println!("ss = {}",ss);
+
+    
+}
+
 fn main() {
-    // unsigned 0 +
-    let a: u8 = 123; //8bit
+    operators();
 
-    // signed
-    let c: i16 = 555; //8bit
+    // // unsigned 0 +
+    // let a: u8 = 123; //8bit
 
-    println!("a = {}", a);
-    println!("c = {}", c);
+    // // signed
+    // let c: i16 = 555; //8bit
 
-    //mut that value can change
-    let mut b: i8 = 0;
-    println!("b = {}", b);
-    b = 42;
-    println!("b = {}", b);
+    // println!("a = {}", a);
+    // println!("c = {}", c);
 
-    let mut d = 123456789; // 32 bit signed i32
-    println!("c = {}, size = {} bytes", d, mem::size_of_val(&d));
-    d = -1;
-    println!(
-        "c = {}, size = {} bytes, after modification.",
-        d,
-        mem::size_of_val(&d)
-    );
+    // //mut that value can change
+    // let mut b: i8 = 0;
+    // println!("b = {}", b);
+    // b = 42;
+    // println!("b = {}", b);
 
-    let z: isize = 123; //take the maximum size base on the operation system x86 or x64
-    let size_of_z = mem::size_of_val(&z);
-    println!(
-        "z = {}, takes up {} bytes, {}-bit os",
-        z,
-        size_of_z,
-        size_of_z * 8
-    );
+    // let mut d = 123456789; // 32 bit signed i32
+    // println!("c = {}, size = {} bytes", d, mem::size_of_val(&d));
+    // d = -1;
+    // println!(
+    //     "c = {}, size = {} bytes, after modification.",
+    //     d,
+    //     mem::size_of_val(&d)
+    // );
 
-    let f = 'x';
-    println!("f = {}, size = {} bytes", f, mem::size_of_val(&f));
+    // let z: isize = 123; //take the maximum size base on the operation system x86 or x64
+    // let size_of_z = mem::size_of_val(&z);
+    // println!(
+    //     "z = {}, takes up {} bytes, {}-bit os",
+    //     z,
+    //     size_of_z,
+    //     size_of_z * 8
+    // );
 
-    let e = 2.5;
-    let g: f32 = 2.5;
-    println!("e = {}, size = {} bytes", e, mem::size_of_val(&e));
-    println!("g = {}, size = {} bytes", g, mem::size_of_val(&g));
+    // let f = 'x';
+    // println!("f = {}, size = {} bytes", f, mem::size_of_val(&f));
 
-    //true false
-    let j = false;
-    println!("j = {}, size = {} bytes", j, mem::size_of_val(&j));
+    // let e = 2.5;
+    // let g: f32 = 2.5;
+    // println!("e = {}, size = {} bytes", e, mem::size_of_val(&e));
+    // println!("g = {}, size = {} bytes", g, mem::size_of_val(&g));
+
+    // //true false
+    // let j = false;
+    // println!("j = {}, size = {} bytes", j, mem::size_of_val(&j));
 }
