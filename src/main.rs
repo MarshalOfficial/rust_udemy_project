@@ -1,5 +1,10 @@
 use std::mem;
 
+const MEANING_OF_LIFE: u8 = 42; // no fixed address
+
+static ZA: i32 = 123;
+static mut ZB: i32 = 123;
+
 fn operators() {
     let mut a = 2 + 3 * 4;
     println!("{}", a);
@@ -18,18 +23,15 @@ fn operators() {
 
     //bitwise
     let c = 1 | 2; // | or    & and     ^ XOR    ! NOR
-    println!("1|2 = {}",c);
+    println!("1|2 = {}", c);
     let two_to_10 = 1 << 10;
-    println!("2^8 = {}",two_to_10);
-    
+    println!("2^8 = {}", two_to_10);
     //logical
     let ss = std::f64::consts::PI < 4.0; //true // > <= == >=
-    println!("ss = {}",ss);
-
-
+    println!("ss = {}", ss);
 }
 
-fn fundamental_data_types(){
+fn fundamental_data_types() {
     // unsigned 0 +
     let a: u8 = 123; //8bit
 
@@ -76,23 +78,28 @@ fn fundamental_data_types(){
     println!("j = {}, size = {} bytes", j, mem::size_of_val(&j));
 }
 
-fn scope_and_shadowing(){
+fn scope_and_shadowing() {
     let a = 123;
-    
     {
         let b = 456;
-        println!("inside b = {}",b);
+        println!("inside b = {}", b);
         let a = 777; //it shadows outer a
-        println!("inside a = {}",a);    
+        println!("inside a = {}", a);
     }
-    
-    println!("outside a = {}",a);
-    //println!("outside b = {}",b); //illegal
 
+    println!("outside a = {}", a);
+    //println!("outside b = {}",b); //illegal
 }
 
 fn main() {
     //fundamental_data_types();
     //operators();
-    scope_and_shadowing();    
+    //scope_and_shadowing();
+    println!("{}", MEANING_OF_LIFE);
+    println!("{}", ZA);
+    unsafe{
+        ZB = 777;
+        println!("{}", ZB);
+    }
+    
 }
