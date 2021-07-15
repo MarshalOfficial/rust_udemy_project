@@ -340,7 +340,7 @@ fn vectors() {
 
 fn use_slice(slice: &mut [i32]) {
     println!("first elem = {}, len = {}", slice[0], slice.len());
-    slice[0] = 4321; 
+    slice[0] = 4321;
 }
 
 fn slices() {
@@ -350,16 +350,17 @@ fn slices() {
     println!("{:?}", data);
 }
 
-fn strings(){
+fn strings() {
     //let s = "hello there";
-    let s:&'static str = "hello there";
+    let s: &'static str = "hello there";
 
-    for c in s.chars()//.rev()
+    for c in s.chars()
+    //.rev()
     {
-        println!("{}",c);
+        println!("{}", c);
     }
 
-    if let Some(first_char) = s.chars().nth(0){
+    if let Some(first_char) = s.chars().nth(0) {
         println!("first char is = {}", first_char);
     }
 
@@ -367,24 +368,55 @@ fn strings(){
     //string
     let mut letters = String::new();
     let mut a = 'a' as u8;
-    while a <= ('z' as u8){
+    while a <= ('z' as u8) {
         letters.push(a as char);
         letters.push_str(",");
         a += 1;
     }
 
-    println!("{}",letters);
+    println!("{}", letters);
 
     let z = letters + "aaaaa";
-    println!("{}",z);
+    println!("{}", z);
 
     let mut abc = String::from("helllo");
-    println!("{}",abc.replace("ll", "ff"));
+    println!("{}", abc.replace("ll", "ff"));
     let mut aaa = "asdsalkdsj".to_string();
 }
 
+fn sum_and_product(x: i32, y: i32) -> (i32, i32) {
+    (x + y, x * y)
+}
+
+fn tuples() {
+    let x = 3;
+    let y = 4;
+    let sp = sum_and_product(x, y);
+
+    println!("sp is {:?}", sp);
+    println!("{0} + {1} = {2}, {0} * {1} = {3}", x, y, sp.0, sp.1);
+
+    //destructring
+    let (a,b) = sp;
+    println!("a={},b={}",a,b);
+
+
+    let sp2 = sum_and_product(4,7);
+    let combined = (sp,sp2);
+    println!("{:?}",combined);
+    println!("last elem = {}",(combined.1).1);
+
+    let ((c,d),(e,f)) = combined;
+    let foo = (true, 42.0, -1i8);
+    println!("{:?}",foo);
+
+    let meaning = (42,);
+    println!("{:?}",meaning);
+}
+
 fn main() {
-    strings();
+    tuples();
+    //strings();
     //slices();
     //vectors();
     //arrays();
