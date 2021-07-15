@@ -459,25 +459,50 @@ struct Lineee {
     end: Pointtt,
 }
 
-impl Lineee
-{
+impl Lineee {
     fn len(&self) -> f64 {
         let dx = self.start.x - self.end.x;
         let dy = self.start.y - self.end.y;
-        (dx*dx+dy*dy).sqrt()
+        (dx * dx + dy * dy).sqrt()
     }
 }
 
 fn methods() {
-    let p = Pointtt{x:3.0,y:4.0};
-    let p2 = Pointtt{x:5.0,y:10.0};
-    let myLine = Lineee{start: p,end:p2};
+    let p = Pointtt { x: 3.0, y: 4.0 };
+    let p2 = Pointtt { x: 5.0, y: 10.0 };
+    let myLine = Lineee { start: p, end: p2 };
 
-    println!("lenght= {}",myLine.len());
+    println!("lenght= {}", myLine.len());
+}
+
+fn say_hello() {
+    println!("hello");
+}
+
+fn closures() {
+    let sh = say_hello;
+    sh();
+
+    let plus_one = |x: i32| -> i32 { x + 1 };
+    let a = 6;
+    println!("{} + 1 = {}", a, plus_one(a));
+
+    let plus_two = |x| {
+        let mut z = x;
+        z += 2;
+        z
+    };
+    println!("{} + 2 = {}", 3, plus_two(3));
+
+    let plus_three = |x: &mut i32| *x += 3;
+    let mut f = 12;
+    plus_three(&mut f);
+    println!("f = {}", f);
 }
 
 fn main() {
-    methods();
+    closures();
+    //methods();
     //functions();
     //generics();
     //pm::pattern_matching();
