@@ -645,17 +645,63 @@ impl Shape for Circle {
 }
 
 fn main() {
-    let shapes: [&Shape; 4] = [
-        &Circle { radius: 1.0 },
-        &Square { side: 3.0 },
-        &Circle { radius: 2.0 },
-        &Square { side: 4.0 },
-    ];
+    let print_vector = |x: &Vec<i32>|
+    {        
+        println!("x[0] = {}", x[0]);    
+    };
 
-    for (i, shape) in shapes.iter().enumerate() {
-        println!("Shape #{} has area {}", i, shape.area());
-    }
+    let v = vec![3,2,1];
+    print_vector(&v);
 
+    let mut a = 40;
+    let b = &mut a;
+    *b += 2;
+    println!("a = {}",a);
+    
+
+    //let v = vec![1, 2, 3];
+    //let v2 = v;
+    //println!("{:?}",v2);
+
+    // borrowing occured
+    // let foo = |v: Vec<i32>| ();
+    // foo(v);
+
+    //println!("{:?}",v); //illegal
+
+    // a full copy is occured
+    // let u = 1;
+    // let u2 = u;
+
+    // println!("{:?}", u);
+
+    // let u3 = Box::new(1);
+    // let u4 = u3;
+
+    //println!("{:?}",u3); //illegal
+
+    // let print_vector = |x: Vec<i32>| -> Vec<i32> {
+    //     println!("{:?}", x);
+    //     x
+    // };
+
+    // let v1 = vec![1, 2, 3];
+    // let vv = print_vector(v1);
+    // println!("{:?}",vv[0]);
+
+    //dynamic dispathc
+    // let shapes: [&Shape; 4] = [
+    //     &Circle { radius: 1.0 },
+    //     &Square { side: 3.0 },
+    //     &Circle { radius: 2.0 },
+    //     &Square { side: 4.0 },
+    // ];
+
+    // for (i, shape) in shapes.iter().enumerate() {
+    //     println!("Shape #{} has area {}", i, shape.area());
+    // }
+
+    //static dispatch
     // let a = 123;
     // let b = "hello".to_string();
 
