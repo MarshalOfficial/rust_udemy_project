@@ -588,19 +588,49 @@ struct Roint {
 }
 
 use std::ops::Add;
-impl Add for Roint{
+impl Add for Roint {
     type Output = Roint;
 
-    fn add(self, other:Roint)->Roint{
-        Roint {x: self.x + other.x, y: self.y + other.y}
+    fn add(self, other: Roint) -> Roint {
+        Roint {
+            x: self.x + other.x,
+            y: self.y + other.y,
+        }
     }
 }
 
+trait Printable {
+    fn format(&self) -> String;
+}
+impl Printable for i32 {
+    fn format(&self) -> String {
+        format!("i32: {}", *self)
+    }
+}
+impl Printable for String {
+    fn format(&self) -> String {
+        format!("string: {}", *self)
+    }
+}
+
+fn print_it<T: Printable>(z: T){
+    println!("{}", z.format());
+}
+
 fn main() {
-    let p = Roint {x: 1.0, y:2.0};
-    let p2 = Roint{x: 3.0, y:4.0};
-    let p3 = p + p2;
-    println!("{:?}",p3);
+    let a = 123;
+    let b = "hello".to_string();
+
+    println!("{}", a.format());
+    println!("{}", b.format());
+
+    print_it(a);
+    print_it(b);
+
+    // let p = Roint {x: 1.0, y:2.0};
+    // let p2 = Roint{x: 3.0, y:4.0};
+    // let p3 = p + p2;
+    // println!("{:?}",p3);
 
     //traits();
     //hof();
