@@ -264,7 +264,7 @@ fn option() {
         None => println!("can not devide by 0"),
     }
 
-    // if let / while let
+    // if let / while let used to check the return value of fund or every value then process something
     if let Some(z) = result {
         println!("z= {}", z);
     }
@@ -279,43 +279,68 @@ fn arrays() {
     a[0] = 321;
     println!("a[0] is {}", a[0]);
 
-    println!("{:?}",a);
+    println!("{:?}", a);
 
-    if a == [321,2,3,4,5]
-    {
+    if a == [321, 2, 3, 4, 5] {
         println!("match");
     }
 
     let b = [1; 10];
     //println!("{:?}",b);
-    for i in 0..b.len()
-    {
-        println!("{}",b[i]);
+    for i in 0..b.len() {
+        println!("{}", b[i]);
     }
 
-    println!("b too up {} bytes",mem::size_of_val(&b));
+    println!("b too up {} bytes", mem::size_of_val(&b));
 
-    let mtx:[[f64;3];2] = [
-        [1.0,0.0,0.0],
-        [0.0,2.0,0.0]
-    ];
+    let mtx: [[f64; 3]; 2] = [[1.0, 0.0, 0.0], [0.0, 2.0, 0.0]];
 
-    println!("{:?}",mtx);
+    println!("{:?}", mtx);
 
-    for i in 0..mtx.len()
-    {
-        for j in 0..mtx[i].len()
-        {
-            if i == j
-            {
-                println!("mtx[{}][{}] = {}",i,j,mtx[i][j]);
+    for i in 0..mtx.len() {
+        for j in 0..mtx[i].len() {
+            if i == j {
+                println!("mtx[{}][{}] = {}", i, j, mtx[i][j]);
             }
         }
     }
 }
 
+fn vectors() {
+    //can grow dynamically and not fixed size as an array
+    let mut a = Vec::new();
+    a.push(1);
+    a.push(2);
+    a.push(3);
+    println!("{:?}", a);
+    a.push(44);
+    println!("{:?}", a);
+    println!("a[0] = {}", a[0]);
+    //println!("a[0] = {}",a[111]); //crashed
+
+    match a.get(3) {
+        Some(x) => println!("a[3]={}", x),
+        None => println!("error, no such element"),
+    }
+
+    for x in &a {
+        println!("{}", x);
+    } //print all elements
+
+    a.push(77);
+    println!("{:?}", a);
+    let last_elm = a.pop(); //pop return option , some or none
+    println!("{:?}", a);
+    println!("last elem is {:?} and a is {:?}", last_elm, a);
+
+    while let Some(x) = a.pop(){
+        println!("{}",x);
+    }
+}
+
 fn main() {
-    arrays();
+    vectors();
+    //arrays();
     //option();
     //unions();
     //enums();
