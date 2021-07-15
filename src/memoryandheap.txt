@@ -1,0 +1,7 @@
+stack is short term storage, fast but size is limited. best choice for fn calling
+let x = 5;
+f(x,y) 
+
+heap is long term storage
+let x = Box::new(5)
+this box x is still in the stack but the value of x is stored in the heap

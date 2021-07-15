@@ -1,4 +1,5 @@
 use std::mem;
+mod sh;
 
 const MEANING_OF_LIFE: u8 = 42; // no fixed address
 
@@ -95,11 +96,11 @@ fn main() {
     //fundamental_data_types();
     //operators();
     //scope_and_shadowing();
-    println!("{}", MEANING_OF_LIFE);
-    println!("{}", ZA);
-    unsafe{
-        ZB = 777;
-        println!("{}", ZB);
-    }
-    
+    // println!("{}", MEANING_OF_LIFE);
+    // println!("{}", ZA);
+    // unsafe{
+    //     ZB = 777;
+    //     println!("{}", ZB);
+    // }
+    sh::stack_and_heap();
 }
