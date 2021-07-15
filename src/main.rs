@@ -248,8 +248,32 @@ fn unions() {
     process_value(IntOrFloat { f: 1.23 });
 }
 
+fn option(){
+    //option<T> instead of null handling we have it here
+    // Some(z) or None
+
+    let x = 3.0;
+    let y = 2.0;
+
+    let result:Option<f64> = 
+    if y != 0.0 {Some(x/y)} else {None};
+    
+    println!("{:?}",result);
+
+    match result{
+        Some(z) => println!("{}/{} = {}",x,y,z),
+        None => println!("can not devide by 0"),
+    }
+
+    // if let / while let
+    if let Some(z) = result {println!("z= {}", z);}
+    
+
+}
+
 fn main() {
-    unions();
+    option();
+    //unions();
     //enums();
     //fundamental_data_types();
     //operators();
