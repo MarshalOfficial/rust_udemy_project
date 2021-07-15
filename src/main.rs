@@ -544,7 +544,7 @@ struct Cat {
     name: &'static str,
 }
 
-impl Animal for Human {    
+impl Animal for Human {
     // fn create(name:&'static str) -> Human{
     //     Human{name: name}
     // }
@@ -553,8 +553,8 @@ impl Animal for Human {
         self.name
     }
 
-    fn talk(&self){
-        println!("{} says hello.",self.name());
+    fn talk(&self) {
+        println!("{} says hello.", self.name());
     }
 }
 
@@ -567,22 +567,42 @@ impl Animal for Cat {
         self.name
     }
 
-    fn talk(&self){
-        println!("{} says meow.",self.name());
+    fn talk(&self) {
+        println!("{} says meow.", self.name());
     }
 }
 
 fn traits() {
-     let h = Human { name: "John" };    
-    //let h = Human::create("John");    
+    let h = Human { name: "John" };
+    //let h = Human::create("John");
     h.talk();
 
-    let h = Cat { name: "Misty" };    
+    let h = Cat { name: "Misty" };
     h.talk();
 }
 
+#[derive(Debug)]
+struct Roint {
+    x: f64,
+    y: f64,
+}
+
+use std::ops::Add;
+impl Add for Roint{
+    type Output = Roint;
+
+    fn add(self, other:Roint)->Roint{
+        Roint {x: self.x + other.x, y: self.y + other.y}
+    }
+}
+
 fn main() {
-    traits();
+    let p = Roint {x: 1.0, y:2.0};
+    let p2 = Roint{x: 3.0, y:4.0};
+    let p3 = p + p2;
+    println!("{:?}",p3);
+
+    //traits();
     //hof();
     //closures();
     //methods();
