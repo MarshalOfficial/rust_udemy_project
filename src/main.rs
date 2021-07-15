@@ -1,6 +1,7 @@
 #![allow(dead_code)]
 use std::mem;
 mod sh;
+mod pm;
 
 const MEANING_OF_LIFE: u8 = 42; // no fixed address
 
@@ -415,7 +416,8 @@ fn tuples() {
 }
 
 fn main() {
-    tuples();
+    pm::pattern_matching();
+    //tuples();
     //strings();
     //slices();
     //vectors();
