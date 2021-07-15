@@ -1,7 +1,7 @@
 #![allow(dead_code)]
 use std::mem;
-mod sh;
 mod pm;
+mod sh;
 
 const MEANING_OF_LIFE: u8 = 42; // no fixed address
 
@@ -398,25 +398,43 @@ fn tuples() {
     println!("{0} + {1} = {2}, {0} * {1} = {3}", x, y, sp.0, sp.1);
 
     //destructring
-    let (a,b) = sp;
-    println!("a={},b={}",a,b);
+    let (a, b) = sp;
+    println!("a={},b={}", a, b);
 
+    let sp2 = sum_and_product(4, 7);
+    let combined = (sp, sp2);
+    println!("{:?}", combined);
+    println!("last elem = {}", (combined.1).1);
 
-    let sp2 = sum_and_product(4,7);
-    let combined = (sp,sp2);
-    println!("{:?}",combined);
-    println!("last elem = {}",(combined.1).1);
-
-    let ((c,d),(e,f)) = combined;
+    let ((c, d), (e, f)) = combined;
     let foo = (true, 42.0, -1i8);
-    println!("{:?}",foo);
+    println!("{:?}", foo);
 
     let meaning = (42,);
-    println!("{:?}",meaning);
+    println!("{:?}", meaning);
+}
+
+struct Pointt<T> {
+    x: T,
+    y: T,
+}
+
+struct Linee<T>{
+    start: Pointt<T>,
+    end: Pointt<T>
+}
+
+fn generics() {
+    let a: Pointt<f64> = Pointt { x: 0.0, y: 4.0 };
+    let b = Pointt { x: 1.2, y: 3.4 };   
+
+    let myline = Linee {start: a, end: b};
+    //println!("{:?}",myline);
 }
 
 fn main() {
-    pm::pattern_matching();
+    generics();
+    //pm::pattern_matching();
     //tuples();
     //strings();
     //slices();
