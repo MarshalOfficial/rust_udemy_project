@@ -179,7 +179,31 @@ fn structures() {
     let myline = Line { start: p, end: p2 };
 }
 
+enum Color {
+    Red,
+    Green,
+    Blue,
+    RgbColor(u8,u8,u8), //tuple
+    Cmyk {cyan:u8, magenta:u8, yellow:u8, black:u8} //struct
+}
+fn enums() {
+    //let c: Color = Color::Red;
+    //let c: Color = Color::RgbColor(13,4,55);
+    let c: Color = Color::Cmyk{cyan: 0, magenta: 1, yellow: 10, black:13};
+    match c {
+        Color::Red => println!("r"),
+        Color::Blue => println!("b"),
+        Color::Green => println!("g"),
+        Color::RgbColor(0,0,0) => println!("black"),
+        Color::RgbColor(r,g,b) => println!("rgb({},{},{})",r,g,b),
+        Color::Cmyk{cyan:_,yellow:_,black:_,magenta:_} => println!("cmyk()"),
+        _ => ()
+    }
+}
+
+
 fn main() {
+    enums();
     //fundamental_data_types();
     //operators();
     //scope_and_shadowing();
@@ -194,5 +218,5 @@ fn main() {
     //while_and_loop();
     //for_loop();
     //match_statement();
-    structures();
+    //structures();
 }
