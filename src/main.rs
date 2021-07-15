@@ -92,6 +92,25 @@ fn scope_and_shadowing() {
     //println!("outside b = {}",b); //illegal
 }
 
+fn if_statement(){
+    let temp = 25;
+    if temp > 30
+    {
+        println!("really hot");
+    }
+    else if temp < 10
+    {
+        println!("really cold");
+    }
+    else
+    {
+        println!("temperature is ok");
+    }
+    let day = if temp > 20 {"sunny"} else {"cloudy"};
+    println!("day= {}",day);
+    
+}
+
 fn main() {
     //fundamental_data_types();
     //operators();
@@ -102,5 +121,7 @@ fn main() {
     //     ZB = 777;
     //     println!("{}", ZB);
     // }
-    sh::stack_and_heap();
+    //sh::stack_and_heap();
+    //if_statement();
+
 }
