@@ -613,19 +613,57 @@ impl Printable for String {
     }
 }
 
-fn print_it<T: Printable>(z: T){
+// fn print_it<T: Printable>(z: T){
+//     println!("{}", z.format());
+// }
+
+fn print_it(z: &Printable) {
     println!("{}", z.format());
 }
 
+struct Circle {
+    radius: f64,
+}
+struct Square {
+    side: f64,
+}
+
+trait Shape {
+    fn area(&self) -> f64;
+}
+
+impl Shape for Square {
+    fn area(&self) -> f64 {
+        self.side * self.side
+    }
+}
+
+impl Shape for Circle {
+    fn area(&self) -> f64 {
+        self.radius * self.radius * std::f64::consts::PI
+    }
+}
+
 fn main() {
-    let a = 123;
-    let b = "hello".to_string();
+    let shapes: [&Shape; 4] = [
+        &Circle { radius: 1.0 },
+        &Square { side: 3.0 },
+        &Circle { radius: 2.0 },
+        &Square { side: 4.0 },
+    ];
 
-    println!("{}", a.format());
-    println!("{}", b.format());
+    for (i, shape) in shapes.iter().enumerate() {
+        println!("Shape #{} has area {}", i, shape.area());
+    }
 
-    print_it(a);
-    print_it(b);
+    // let a = 123;
+    // let b = "hello".to_string();
+
+    // println!("{}", a.format());
+    // println!("{}", b.format());
+
+    // print_it(&a);
+    // print_it(&b);
 
     // let p = Roint {x: 1.0, y:2.0};
     // let p2 = Roint{x: 3.0, y:4.0};
