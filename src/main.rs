@@ -340,7 +340,7 @@ fn vectors() {
 
 fn use_slice(slice: &mut [i32]) {
     println!("first elem = {}, len = {}", slice[0], slice.len());
-    slice[0] = 4321;
+    slice[0] = 4321; 
 }
 
 fn slices() {
@@ -350,8 +350,42 @@ fn slices() {
     println!("{:?}", data);
 }
 
+fn strings(){
+    //let s = "hello there";
+    let s:&'static str = "hello there";
+
+    for c in s.chars()//.rev()
+    {
+        println!("{}",c);
+    }
+
+    if let Some(first_char) = s.chars().nth(0){
+        println!("first char is = {}", first_char);
+    }
+
+    //heap
+    //string
+    let mut letters = String::new();
+    let mut a = 'a' as u8;
+    while a <= ('z' as u8){
+        letters.push(a as char);
+        letters.push_str(",");
+        a += 1;
+    }
+
+    println!("{}",letters);
+
+    let z = letters + "aaaaa";
+    println!("{}",z);
+
+    let mut abc = String::from("helllo");
+    println!("{}",abc.replace("ll", "ff"));
+    let mut aaa = "asdsalkdsj".to_string();
+}
+
 fn main() {
-    slices();
+    strings();
+    //slices();
     //vectors();
     //arrays();
     //option();
