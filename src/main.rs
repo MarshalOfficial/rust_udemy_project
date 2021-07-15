@@ -248,31 +248,75 @@ fn unions() {
     process_value(IntOrFloat { f: 1.23 });
 }
 
-fn option(){
+fn option() {
     //option<T> instead of null handling we have it here
     // Some(z) or None
 
     let x = 3.0;
     let y = 2.0;
 
-    let result:Option<f64> = 
-    if y != 0.0 {Some(x/y)} else {None};
-    
-    println!("{:?}",result);
+    let result: Option<f64> = if y != 0.0 { Some(x / y) } else { None };
 
-    match result{
-        Some(z) => println!("{}/{} = {}",x,y,z),
+    println!("{:?}", result);
+
+    match result {
+        Some(z) => println!("{}/{} = {}", x, y, z),
         None => println!("can not devide by 0"),
     }
 
     // if let / while let
-    if let Some(z) = result {println!("z= {}", z);}
-    
+    if let Some(z) = result {
+        println!("z= {}", z);
+    }
+}
 
+fn arrays() {
+    //let mut a = [1,2,3,4,5];
+    //size is exact value
+    let mut a: [i32; 5] = [1, 2, 3, 4, 5];
+    println!("a has {} elements, first is {}", a.len(), a[0]);
+
+    a[0] = 321;
+    println!("a[0] is {}", a[0]);
+
+    println!("{:?}",a);
+
+    if a == [321,2,3,4,5]
+    {
+        println!("match");
+    }
+
+    let b = [1; 10];
+    //println!("{:?}",b);
+    for i in 0..b.len()
+    {
+        println!("{}",b[i]);
+    }
+
+    println!("b too up {} bytes",mem::size_of_val(&b));
+
+    let mtx:[[f64;3];2] = [
+        [1.0,0.0,0.0],
+        [0.0,2.0,0.0]
+    ];
+
+    println!("{:?}",mtx);
+
+    for i in 0..mtx.len()
+    {
+        for j in 0..mtx[i].len()
+        {
+            if i == j
+            {
+                println!("mtx[{}][{}] = {}",i,j,mtx[i][j]);
+            }
+        }
+    }
 }
 
 fn main() {
-    option();
+    arrays();
+    //option();
     //unions();
     //enums();
     //fundamental_data_types();
