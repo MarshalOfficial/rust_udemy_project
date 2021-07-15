@@ -147,6 +147,21 @@ fn for_loop() {
     }
 }
 
+fn match_statement(){
+    let country_code = 98;
+    let country = match country_code{
+        44 => "UK",
+        98 => "IR",
+        7 => "RU",
+        46 => "SW",
+        1...999 => "unKnown",
+        _ => "inValid"
+    };
+    
+    println!("{} : {}", country_code,country);
+}
+
+
 fn main() {
     //fundamental_data_types();
     //operators();
@@ -160,5 +175,6 @@ fn main() {
     //sh::stack_and_heap();
     //if_statement();
     //while_and_loop();
-    for_loop();
+    //for_loop();
+    match_statement();
 }
