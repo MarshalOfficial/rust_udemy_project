@@ -1,3 +1,4 @@
+#![allow(dead_code)]
 use std::mem;
 mod sh;
 
@@ -183,27 +184,73 @@ enum Color {
     Red,
     Green,
     Blue,
-    RgbColor(u8,u8,u8), //tuple
-    Cmyk {cyan:u8, magenta:u8, yellow:u8, black:u8} //struct
+    RgbColor(u8, u8, u8), //tuple
+    Cmyk {
+        cyan: u8,
+        magenta: u8,
+        yellow: u8,
+        black: u8,
+    }, //struct
 }
 fn enums() {
     //let c: Color = Color::Red;
     //let c: Color = Color::RgbColor(13,4,55);
-    let c: Color = Color::Cmyk{cyan: 0, magenta: 1, yellow: 10, black:13};
+    let c: Color = Color::Cmyk {
+        cyan: 0,
+        magenta: 1,
+        yellow: 10,
+        black: 13,
+    };
     match c {
         Color::Red => println!("r"),
         Color::Blue => println!("b"),
         Color::Green => println!("g"),
-        Color::RgbColor(0,0,0) => println!("black"),
-        Color::RgbColor(r,g,b) => println!("rgb({},{},{})",r,g,b),
-        Color::Cmyk{cyan:_,yellow:_,black:_,magenta:_} => println!("cmyk()"),
-        _ => ()
+        Color::RgbColor(0, 0, 0) => println!("black"),
+        Color::RgbColor(r, g, b) => println!("rgb({},{},{})", r, g, b),
+        Color::Cmyk {
+            cyan: _,
+            yellow: _,
+            black: _,
+            magenta: _,
+        } => println!("cmyk()"),
+        _ => (),
     }
 }
 
+union IntOrFloat {
+    i: i32,
+    f: f32,
+}
+
+fn process_value(iof: IntOrFloat) {
+    unsafe {
+        match iof {
+            IntOrFloat { i: 42 } => {
+                println!("meaning of life");
+            }
+            IntOrFloat { f } => {
+                println!("f32: {}", f);
+            }
+        }
+    }
+}
+
+fn unions() {
+    let mut iof = IntOrFloat { i: 132 };
+
+    unsafe {
+        iof.i = 42;
+    }
+
+    let value = unsafe { iof.i };
+
+    process_value(iof);
+    process_value(IntOrFloat { f: 1.23 });
+}
 
 fn main() {
-    enums();
+    unions();
+    //enums();
     //fundamental_data_types();
     //operators();
     //scope_and_shadowing();
