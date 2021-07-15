@@ -528,8 +528,62 @@ fn hof() {
     println!("loop sum2 = {}", sum2);
 }
 
+trait Animal {
+    //fn create(name: &'static str) -> self;
+    fn name(&self) -> &'static str;
+    fn talk(&self) {
+        println!("{} cannot talk", self.name())
+    }
+}
+
+struct Human {
+    name: &'static str,
+}
+
+struct Cat {
+    name: &'static str,
+}
+
+impl Animal for Human {    
+    // fn create(name:&'static str) -> Human{
+    //     Human{name: name}
+    // }
+
+    fn name(&self) -> &'static str {
+        self.name
+    }
+
+    fn talk(&self){
+        println!("{} says hello.",self.name());
+    }
+}
+
+impl Animal for Cat {
+    // fn create(name:&'static str) -> Cat{
+    //     Cat{name: name}
+    // }
+
+    fn name(&self) -> &'static str {
+        self.name
+    }
+
+    fn talk(&self){
+        println!("{} says meow.",self.name());
+    }
+}
+
+fn traits() {
+     let h = Human { name: "John" };    
+    //let h = Human::create("John");    
+    h.talk();
+
+    let h = Cat { name: "Misty" };    
+    h.talk();
+}
+
 fn main() {
-    hof();
+    traits();
+    //hof();
     //closures();
     //methods();
     //functions();
