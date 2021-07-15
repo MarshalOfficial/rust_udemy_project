@@ -419,38 +419,66 @@ struct Pointt<T> {
     y: T,
 }
 
-struct Linee<T>{
+struct Linee<T> {
     start: Pointt<T>,
-    end: Pointt<T>
+    end: Pointt<T>,
 }
 
 fn generics() {
     let a: Pointt<f64> = Pointt { x: 0.0, y: 4.0 };
-    let b = Pointt { x: 1.2, y: 3.4 };   
+    let b = Pointt { x: 1.2, y: 3.4 };
 
-    let myline = Linee {start: a, end: b};
+    let myline = Linee { start: a, end: b };
     //println!("{:?}",myline);
 }
 
-fn increase(x: &mut i32){
-    *x +=1;
+fn increase(x: &mut i32) {
+    *x += 1;
 }
-fn functions(){
+fn functions() {
     let mut z = 1;
     increase(&mut z);
-    println!("z = {}",z);
+    println!("z = {}", z);
     let a = 3;
     let b = 5;
-    let p = product(a,b);
-    println!("p={}",p);
+    let p = product(a, b);
+    println!("p={}", p);
 }
 
-fn product(x:i32,y:i32) -> i32{
+fn product(x: i32, y: i32) -> i32 {
     x * y
 }
 
+struct Pointtt {
+    x: f64,
+    y: f64,
+}
+
+struct Lineee {
+    start: Pointtt,
+    end: Pointtt,
+}
+
+impl Lineee
+{
+    fn len(&self) -> f64 {
+        let dx = self.start.x - self.end.x;
+        let dy = self.start.y - self.end.y;
+        (dx*dx+dy*dy).sqrt()
+    }
+}
+
+fn methods() {
+    let p = Pointtt{x:3.0,y:4.0};
+    let p2 = Pointtt{x:5.0,y:10.0};
+    let myLine = Lineee{start: p,end:p2};
+
+    println!("lenght= {}",myLine.len());
+}
+
 fn main() {
-    functions();
+    methods();
+    //functions();
     //generics();
     //pm::pattern_matching();
     //tuples();
