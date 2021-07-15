@@ -147,20 +147,37 @@ fn for_loop() {
     }
 }
 
-fn match_statement(){
+fn match_statement() {
     let country_code = 98;
-    let country = match country_code{
+    let country = match country_code {
         44 => "UK",
         98 => "IR",
         7 => "RU",
         46 => "SW",
         1...999 => "unKnown",
-        _ => "inValid"
+        _ => "inValid",
     };
-    
-    println!("{} : {}", country_code,country);
+
+    println!("{} : {}", country_code, country);
 }
 
+struct Point {
+    x: f64,
+    y: f64,
+}
+
+struct Line {
+    start: Point,
+    end: Point,
+}
+
+fn structures() {
+    let p = Point { x: 3.0, y: 4.0 };
+    println!("point p is at ({},{})", p.x, p.y);
+
+    let p2 = Point { x: 5.0, y: 10.0 };
+    let myline = Line { start: p, end: p2 };
+}
 
 fn main() {
     //fundamental_data_types();
@@ -176,5 +193,6 @@ fn main() {
     //if_statement();
     //while_and_loop();
     //for_loop();
-    match_statement();
+    //match_statement();
+    structures();
 }
