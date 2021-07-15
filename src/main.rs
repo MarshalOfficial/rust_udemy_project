@@ -92,23 +92,59 @@ fn scope_and_shadowing() {
     //println!("outside b = {}",b); //illegal
 }
 
-fn if_statement(){
+fn if_statement() {
     let temp = 25;
-    if temp > 30
-    {
+    if temp > 30 {
         println!("really hot");
-    }
-    else if temp < 10
-    {
+    } else if temp < 10 {
         println!("really cold");
-    }
-    else
-    {
+    } else {
         println!("temperature is ok");
     }
-    let day = if temp > 20 {"sunny"} else {"cloudy"};
-    println!("day= {}",day);
-    
+    let day = if temp > 20 { "sunny" } else { "cloudy" };
+    println!("day= {}", day);
+}
+
+fn while_and_loop() {
+    let mut x = 1;
+
+    while x < 1000 {
+        x *= 2;
+
+        // 64 will skip to print
+        if x == 64 {
+            continue;
+        }
+
+        println!("x = {}", x);
+    }
+
+    let mut y = 1;
+    loop
+    //while true
+    {
+        y *= 2;
+        println!("y={}", y);
+        if y == 1 << 10 {
+            break;
+        }
+    }
+}
+
+fn for_loop() {
+    for x in 1..11 {
+        if x == 3 {
+            continue;
+        }
+        if x == 8 {
+            break;
+        }
+        println!("x = {}", x);
+    }
+
+    for (pos, y) in (30..41).enumerate() {
+        println!("{}:{}", pos, y);
+    }
 }
 
 fn main() {
@@ -123,5 +159,6 @@ fn main() {
     // }
     //sh::stack_and_heap();
     //if_statement();
-
+    //while_and_loop();
+    for_loop();
 }
