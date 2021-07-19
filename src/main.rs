@@ -648,9 +648,9 @@ struct Person {
     name: String,
 }
 
-impl Person{
+impl Person {
     //fn get_ref_name(&self) -> &String{
-    fn get_ref_name<'a>(&'a self) -> &'a String{
+    fn get_ref_name<'a>(&'a self) -> &'a String {
         &self.name
     }
 }
@@ -662,22 +662,51 @@ struct Company<'Z> {
     ceo: &'Z Person,
 }
 
-fn main() {
-    let boss = Person {
-        name: String::from("Elon Musk"),
-    };
-    let tesla = Company {
-        name: String::from("Tesla"),
-        ceo: &boss,
-    };
+use std::rc::Rc;
 
-    let mut z: &String;
-    {
-        let p = Person {name:String::from("John")};
-        z = p.get_ref_name();
+struct Personn {
+    name: Rc<String>,
+}
+
+impl Personn {
+    fn new(name: Rc<String>) -> Personn {
+        Personn { name: name }
     }
 
-    
+    fn greet(&self) {
+        println!("Hi, my name is {}", self.name);
+    }
+}
+
+fn rc_demo() {
+    let name = Rc::new("John".to_string());
+    println!("Name = {}, name has {} strong pointers", name, Rc::strong_count(&name));
+    {
+        let person = Personn::new(name.clone());
+        println!("Name = {}, name has {} strong pointers", name, Rc::strong_count(&name));
+        person.greet();
+    }
+    println!("Name = {}, name has {} strong pointers", name, Rc::strong_count(&name));
+    println!("Name = {}", name);
+}
+
+fn main() {
+    rc_demo();
+
+    // let boss = Person {
+    //     name: String::from("Elon Musk"),
+    // };
+    // let tesla = Company {
+    //     name: String::from("Tesla"),
+    //     ceo: &boss,
+    // };
+
+    // let mut z: &String;
+    // {
+    //     let p = Person {name:String::from("John")};
+    //     z = p.get_ref_name();
+    // }
+
     // let print_vector = |x: &Vec<i32>|
     // {
     //     println!("x[0] = {}", x[0]);
