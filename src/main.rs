@@ -644,20 +644,52 @@ impl Shape for Circle {
     }
 }
 
+struct Person {
+    name: String,
+}
+
+impl Person{
+    //fn get_ref_name(&self) -> &String{
+    fn get_ref_name<'a>(&'a self) -> &'a String{
+        &self.name
+    }
+}
+
+// it means that the lifetime of the whole company object is equal and totally related to the ceo reference
+// so if the ceo reference killed, the company object will killed
+struct Company<'Z> {
+    name: String,
+    ceo: &'Z Person,
+}
+
 fn main() {
-    let print_vector = |x: &Vec<i32>|
-    {        
-        println!("x[0] = {}", x[0]);    
+    let boss = Person {
+        name: String::from("Elon Musk"),
+    };
+    let tesla = Company {
+        name: String::from("Tesla"),
+        ceo: &boss,
     };
 
-    let v = vec![3,2,1];
-    print_vector(&v);
+    let mut z: &String;
+    {
+        let p = Person {name:String::from("John")};
+        z = p.get_ref_name();
+    }
 
-    let mut a = 40;
-    let b = &mut a;
-    *b += 2;
-    println!("a = {}",a);
     
+    // let print_vector = |x: &Vec<i32>|
+    // {
+    //     println!("x[0] = {}", x[0]);
+    // };
+
+    // let v = vec![3,2,1];
+    // print_vector(&v);
+
+    // let mut a = 40;
+    // let b = &mut a;
+    // *b += 2;
+    // println!("a = {}",a);
 
     //let v = vec![1, 2, 3];
     //let v2 = v;
