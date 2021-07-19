@@ -739,8 +739,16 @@ fn arc_demo() {
     t.join().unwrap();
 }
 
+use rand::Rng;
+
 fn main() {
-    arc_demo();
+    let mut rng = rand::thread_rng();
+    let b:u16 = rng.gen();
+    println!("{:?}",b);
+    
+
+
+    //arc_demo();
 
     //rc_demo();
 
