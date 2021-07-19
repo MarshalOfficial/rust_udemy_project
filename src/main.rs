@@ -680,18 +680,60 @@ impl Personn {
 
 fn rc_demo() {
     let name = Rc::new("John".to_string());
-    println!("Name = {}, name has {} strong pointers", name, Rc::strong_count(&name));
+    println!(
+        "Name = {}, name has {} strong pointers",
+        name,
+        Rc::strong_count(&name)
+    );
     {
         let person = Personn::new(name.clone());
-        println!("Name = {}, name has {} strong pointers", name, Rc::strong_count(&name));
+        println!(
+            "Name = {}, name has {} strong pointers",
+            name,
+            Rc::strong_count(&name)
+        );
         person.greet();
     }
-    println!("Name = {}, name has {} strong pointers", name, Rc::strong_count(&name));
+    println!(
+        "Name = {}, name has {} strong pointers",
+        name,
+        Rc::strong_count(&name)
+    );
     println!("Name = {}", name);
 }
 
+use std::thread;
+use std::sync::Arc;
+
+struct Personn2 {
+    name: Arc<String>,
+}
+
+impl Personn2 {
+    fn new(name: Arc<String>) -> Personn2 {
+        Personn2 { name: name }
+    }
+
+    fn greet(&self) {
+        println!("Hi, my name is {}", self.name);
+    }
+}
+
+fn arc_demo() {
+    let name = Arc::new("John".to_string());
+    let person = Personn2::new(name.clone());
+
+    let t = thread::spawn(move || {
+        person.greet();
+    });
+    println!("Name = {}", name);
+    t.join().unwrap();
+}
+
 fn main() {
-    rc_demo();
+    arc_demo();
+
+    //rc_demo();
 
     // let boss = Person {
     //     name: String::from("Elon Musk"),
