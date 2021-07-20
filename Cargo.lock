@@ -12,6 +12,7 @@ checksum = "a06f77d526c1a601b7c4cdd98f54b5eaabffc14d5f2f0296febdc7f357c6d3ba"
 name = "hello_world"
 version = "0.1.0"
 dependencies = [
+ "phrases",
  "rand 0.3.23",
 ]
 
@@ -20,6 +21,10 @@ name = "libc"
 version = "0.2.98"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "320cfe77175da3a483efed4bc0adc1968ca050b098ce4f2f1c13a56626128790"
+
+[[package]]
+name = "phrases"
+version = "0.1.0"
 
 [[package]]
 name = "rand"

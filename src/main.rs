@@ -741,10 +741,18 @@ fn arc_demo() {
 
 use rand::Rng;
 
+extern crate rand;
+extern crate phrases;
+use phrases::greetings::french;
+
 fn main() {
-    let mut rng = rand::thread_rng();
-    let b:u16 = rng.gen();
-    println!("{:?}",b);
+    println!("English: {}, {}", phrases::greetings::english::hello(), phrases::greetings::english::goodby());
+    println!("English: {}, {}", french::hello(), french::goodby());
+    
+    
+    // let mut rng = rand::thread_rng();
+    // let b:u16 = rng.gen();
+    // println!("{:?}",b);
     
 
 
